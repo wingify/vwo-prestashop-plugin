@@ -236,14 +236,15 @@ class VisualWebOptimizer extends Module
 
 	protected function _getAsyncVisualWebOptimizerTag()
 	{	
-		// $current_page = $_SERVER["REQUEST_URI"];
+		$current_page = $_SERVER["REQUEST_URI"];
 		// $current_page = $this->context->link->getPageLink(Context::getContext()->controller->php_self);
-		// var _vwo_url_prefix = " .$current_page."', 
-		// var _vis_opt_url = document.location.origin + _vwo_url_prefix + document.location.pathname + document.location.search;
+		// need to find a better way to do this
+
 		return "
 		<!-- Start Visual Website Optimizer Asynchronous Code -->
-
 		<script type='text/JavaScript'>
+		var _vwo_url_prefix = " .$current_page."', 
+		var _vis_opt_url = document.location.origin + _vwo_url_prefix + document.location.pathname + document.location.search;
 		var _vwo_code=(function(){
 		_vis_opt_url = window._vis_opt_url || document.URL,
 		var account_id=".Tools::safeOutput(Configuration::get('ACCOUNT_ID')).",
