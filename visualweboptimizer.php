@@ -239,47 +239,145 @@ class VisualWebOptimizer extends Module
 		$current_page = $_SERVER["REQUEST_URI"];
 		// $current_page = $this->context->link->getPageLink(Context::getContext()->controller->php_self);
 		// need to find a better way to do this
+				// Context
 
-		return "
-		<!-- Start Visual Website Optimizer Asynchronous Code -->
-		<script type='text/JavaScript'>
-		var _vwo_url_prefix = " .$current_page."', 
-		var _vis_opt_url = document.location.origin + _vwo_url_prefix + document.location.pathname + document.location.search;
-		var _vwo_code=(function(){
-		_vis_opt_url = window._vis_opt_url || document.URL,
-		var account_id=".Tools::safeOutput(Configuration::get('ACCOUNT_ID')).",
-		settings_tolerance=".Tools::getValue('SETTINGS_TOLERANCE', Configuration::get('SETTINGS_TOLERANCE')).",
-		library_tolerance=".Tools::getValue('LIBRARY_TOLERANCE', Configuration::get('LIBRARY_TOLERANCE')).",
-		use_existing_jquery=false,
-		// DO NOT EDIT BELOW THIS LINE
-		f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
-		</script>
-		<!-- End Visual Website Optimizer Asynchronous Code -->";
+		$context = Context::getContext();
+		$controller = Context::getContext()->controller->php_self;
+		if ($controller == "category") {
+			$cid = $context->controller->getCategory()->id;
+			$cat_link = $context->link->getCategoryLink($cid);
+			return "
+			<!-- Start Visual Website Optimizer Asynchronous Code -->
+			<script type='text/JavaScript'>
+			var _vwo_url_prefix = '" .$cat_link."'; 
+			var _vis_opt_url = _vwo_url_prefix;
+			var _vwo_code=(function(){
+			_vis_opt_url = window._vis_opt_url || document.URL;
+			var account_id=".Tools::safeOutput(Configuration::get('ACCOUNT_ID')).";
+			settings_tolerance=".Tools::getValue('SETTINGS_TOLERANCE', Configuration::get('SETTINGS_TOLERANCE')).";
+			library_tolerance=".Tools::getValue('LIBRARY_TOLERANCE', Configuration::get('LIBRARY_TOLERANCE')).";
+			use_existing_jquery=false;
+			// DO NOT EDIT BELOW THIS LINE
+			f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(_vis_opt_url)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+			</script>
+			<!-- End Visual Website Optimizer Asynchronous Code -->";
+		}
+		else if ($controller == "product") {
+			$pid = $context->controller->getProduct()->id;
+			$prod_link = $context->link->getProductLink($pid);
+			return "
+			<!-- Start Visual Website Optimizer Asynchronous Code -->
+			<script type='text/JavaScript'>
+			var _vwo_url_prefix = '" .$prod_link."'; 
+			var _vis_opt_url =  _vwo_url_prefix ;
+			var _vwo_code=(function(){
+			_vis_opt_url = window._vis_opt_url || document.URL;
+			var account_id=".Tools::safeOutput(Configuration::get('ACCOUNT_ID')).";
+			settings_tolerance=".Tools::getValue('SETTINGS_TOLERANCE', Configuration::get('SETTINGS_TOLERANCE')).";
+			library_tolerance=".Tools::getValue('LIBRARY_TOLERANCE', Configuration::get('LIBRARY_TOLERANCE')).";
+			use_existing_jquery=false;
+			// DO NOT EDIT BELOW THIS LINE
+			f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(_vis_opt_url)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+			</script>
+			<!-- End Visual Website Optimizer Asynchronous Code -->";
+		} else {
+			return "
+			<!-- Start Visual Website Optimizer Asynchronous Code -->
+			<script type='text/JavaScript'>
+			var _vwo_url_prefix = '" .$this->context->link->getPageLink($controller)."'; 
+			var _vis_opt_url =  _vwo_url_prefix;
+			var _vwo_code=(function(){
+			_vis_opt_url = window._vis_opt_url || document.URL;
+			var account_id=".Tools::safeOutput(Configuration::get('ACCOUNT_ID')).";
+			settings_tolerance=".Tools::getValue('SETTINGS_TOLERANCE', Configuration::get('SETTINGS_TOLERANCE')).";
+			library_tolerance=".Tools::getValue('LIBRARY_TOLERANCE', Configuration::get('LIBRARY_TOLERANCE')).";
+			use_existing_jquery=false;
+			// DO NOT EDIT BELOW THIS LINE
+			f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(_vis_opt_url)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+			</script>
+			<!-- End Visual Website Optimizer Asynchronous Code -->";
+		}
 	} 
 
 	protected function _getSyncVisualWebOptimizerTag()
 	{
-		return "
-		<!-- Start Visual Website Optimizer Code -->
-		<script type='text/JavaScript'>
-		var _vis_opt_account_id = ".Tools::safeOutput(Configuration::get('ACCOUNT_ID')).";
-		var _vis_opt_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://');
-		document.write('<s' + 'cript src='' + _vis_opt_protocol + 'dev.visualwebsiteoptimizer.com/deploy/js_visitor_settings.php?v=1&a='+_vis_opt_account_id+'&url='
-		+encodeURIComponent(document.URL)+'&random='+Math.random()+' type='text/JavaScript'>' + '<\/s' + 'cript>');
-		</script>
-		<script type='text/JavaScript'>
-		if(typeof(_vis_opt_settings_loaded) == 'boolean') { document.write('<s' + 'cript src='' + _vis_opt_protocol + 
-		'd5phz18u4wuww.cloudfront.net/vis_opt.js' type='text/JavaScript'>' + '<\/s' + 'cript>'); }
-		// if your site already has jQuery 1.4.2, replace vis_opt.js with vis_opt_no_jquery.js above
-		</script>
-		<script type='text/JavaScript'>
-		if(typeof(_vis_opt_settings_loaded) == 'boolean' && typeof(_vis_opt_top_initialize) == 'function') {
-		        _vis_opt_top_initialize(); vwo_$(document).ready(function() { _vis_opt_bottom_initialize(); });
-		}
-		</script>
-		<!-- End Visual Website Optimizer Code -->
+		$context = Context::getContext();
+		$controller = Context::getContext()->controller->php_self;
+		if ($controller == "category") {
+			$cid = $context->controller->getCategory()->id;
+			$cat_link = $context->link->getCategoryLink($cid);
+			return "
+			<!-- Start Visual Website Optimizer Code -->
+			<script type='text/JavaScript'>
+			var _vwo_url_prefix = '" .$cat_link."'; 
+			var _vis_opt_url = _vwo_url_prefix;
+			var _vis_opt_account_id = ".Tools::safeOutput(Configuration::get('ACCOUNT_ID')).";
+			var _vis_opt_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+			document.write('<s' + 'cript src='' + _vis_opt_protocol + 'dev.visualwebsiteoptimizer.com/deploy/js_visitor_settings.php?v=1&a='+_vis_opt_account_id+'&url='
+			+encodeURIComponent(_vis_opt_url)+'&random='+Math.random()+' type='text/JavaScript'>' + '<\/s' + 'cript>');
+			</script>
+			<script type='text/JavaScript'>
+			if(typeof(_vis_opt_settings_loaded) == 'boolean') { document.write('<s' + 'cript src='' + _vis_opt_protocol + 
+			'd5phz18u4wuww.cloudfront.net/vis_opt.js' type='text/JavaScript'>' + '<\/s' + 'cript>'); }
+			// if your site already has jQuery 1.4.2, replace vis_opt.js with vis_opt_no_jquery.js above
+			</script>
+			<script type='text/JavaScript'>
+			if(typeof(_vis_opt_settings_loaded) == 'boolean' && typeof(_vis_opt_top_initialize) == 'function') {
+			        _vis_opt_top_initialize(); vwo_$(document).ready(function() { _vis_opt_bottom_initialize(); });
+			}
+			</script>
+			<!-- End Visual Website Optimizer Code -->
 
-		";
+			";
+		} elseif ($controller == "product") {
+			$pid = $context->controller->getProduct()->id;
+			$prod_link = $context->link->getProductLink($pid);
+			return "
+			<!-- Start Visual Website Optimizer Code -->
+			<script type='text/JavaScript'>
+			var _vwo_url_prefix = '" .$prod_link."'; 
+			var _vis_opt_url = _vwo_url_prefix;
+			var _vis_opt_account_id = ".Tools::safeOutput(Configuration::get('ACCOUNT_ID')).";
+			var _vis_opt_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+			document.write('<s' + 'cript src='' + _vis_opt_protocol + 'dev.visualwebsiteoptimizer.com/deploy/js_visitor_settings.php?v=1&a='+_vis_opt_account_id+'&url='
+			+encodeURIComponent(_vis_opt_url)+'&random='+Math.random()+' type='text/JavaScript'>' + '<\/s' + 'cript>');
+			</script>
+			<script type='text/JavaScript'>
+			if(typeof(_vis_opt_settings_loaded) == 'boolean') { document.write('<s' + 'cript src='' + _vis_opt_protocol + 
+			'd5phz18u4wuww.cloudfront.net/vis_opt.js' type='text/JavaScript'>' + '<\/s' + 'cript>'); }
+			// if your site already has jQuery 1.4.2, replace vis_opt.js with vis_opt_no_jquery.js above
+			</script>
+			<script type='text/JavaScript'>
+			if(typeof(_vis_opt_settings_loaded) == 'boolean' && typeof(_vis_opt_top_initialize) == 'function') {
+			        _vis_opt_top_initialize(); vwo_$(document).ready(function() { _vis_opt_bottom_initialize(); });
+			}
+			</script>
+			<!-- End Visual Website Optimizer Code -->";
+		}
+		else {
+			return "
+			<!-- Start Visual Website Optimizer Code -->
+			<script type='text/JavaScript'>
+			var _vwo_url_prefix = '" .$this->context->link->getPageLink($controller)."'; 
+			var _vis_opt_url = _vwo_url_prefix;
+			var _vis_opt_account_id = ".Tools::safeOutput(Configuration::get('ACCOUNT_ID')).";
+			var _vis_opt_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+			document.write('<s' + 'cript src='' + _vis_opt_protocol + 'dev.visualwebsiteoptimizer.com/deploy/js_visitor_settings.php?v=1&a='+_vis_opt_account_id+'&url='
+			+encodeURIComponent(_vis_opt_url)+'&random='+Math.random()+' type='text/JavaScript'>' + '<\/s' + 'cript>');
+			</script>
+			<script type='text/JavaScript'>
+			if(typeof(_vis_opt_settings_loaded) == 'boolean') { document.write('<s' + 'cript src='' + _vis_opt_protocol + 
+			'd5phz18u4wuww.cloudfront.net/vis_opt.js' type='text/JavaScript'>' + '<\/s' + 'cript>'); }
+			// if your site already has jQuery 1.4.2, replace vis_opt.js with vis_opt_no_jquery.js above
+			</script>
+			<script type='text/JavaScript'>
+			if(typeof(_vis_opt_settings_loaded) == 'boolean' && typeof(_vis_opt_top_initialize) == 'function') {
+			        _vis_opt_top_initialize(); vwo_$(document).ready(function() { _vis_opt_bottom_initialize(); });
+			}
+			</script>
+			<!-- End Visual Website Optimizer Code -->";
+		}
+
 	}
 
 	public function hookHeader($params)
