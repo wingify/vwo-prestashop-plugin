@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
         <module>
             <name>visualwebsiteoptimizer</name>
-            <displayName><![CDATA[VWO tracking code]]></displayName>
+            <displayName><![CDATA[Visual Website Optimizer]]></displayName>
             <version><![CDATA[1.0]]></version>
-            <description><![CDATA[Installs VWO tracking code to your PrestaShop. It also enables you to track revenue generated without changing any code.]]></description>
+            <description><![CDATA[Installs VWO tracking code to your PrestaShop. It also enables you to track revenue generated without any code changes in your shop.]]></description>
             <author><![CDATA[Wingify]]></author>
             <tab><![CDATA[front_office_features]]></tab>
             <confirmUninstall>Are you sure you want to uninstall?</confirmUninstall>

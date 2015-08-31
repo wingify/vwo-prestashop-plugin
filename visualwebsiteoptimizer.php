@@ -16,8 +16,8 @@ class VisualWebsiteOptimizer extends Module
 	 
 	    parent::__construct();
 	 
-	    $this->displayName = $this->l('VWO tracking code');
-	    $this->description = $this->l('Installs VWO tracking code to your PrestaShop. It also enables you to track revenue generated without changing any code.');
+	    $this->displayName = $this->l('Visual Website Optimizer');
+	    $this->description = $this->l('Installs VWO tracking code to your PrestaShop. It also enables you to track revenue generated without any code changes.');
 	 
 	    $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
 	 
