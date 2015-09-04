@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <module>
+            <name>visualwebsiteoptimizer</name>
+            <displayName><![CDATA[Visual Website Optimizer]]></displayName>
+            <version><![CDATA[1.0]]></version>
+            <description><![CDATA[Installs VWO tracking code to your PrestaShop. It also enables you to track revenue generated without any code changes in your shop.]]></description>
+            <author><![CDATA[VWO]]></author>
+            <tab><![CDATA[advertising_marketing]]></tab>
+            <confirmUninstall>Are you sure you want to uninstall?</confirmUninstall>
+            <is_configurable>1</is_configurable>
+            <need_instance>0</need_instance>
+            <limited_countries></limited_countries>
+        </module>
