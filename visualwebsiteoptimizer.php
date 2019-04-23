@@ -438,7 +438,7 @@ class VisualWebsiteOptimizer extends Module
 				window._vis_opt_queue = window._vis_opt_queue || [];
 				window._vis_opt_queue.push(function() {_vis_opt_revenue_conversion(_vis_opt_revenue);});
 				window.VWO = window.VWO || [];
-    			window.VWO.push(['track.revenueConversion', _vis_opt_revenue]);
+                                window.VWO.push(['track.revenueConversion', _vis_opt_revenue]);
 
 			</script>";
 		}
